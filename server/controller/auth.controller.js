@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ error: 'Username already exists' });
     }
 
-    const profilePicture = `https://avatar-placeholder.iran.liara.run/public/boy?username=${username}&size=200`;
+    const profilePicture = `https://avatar.iran.liara.run/public/boy?username=${username}&size=200`;
 
     const newUser = new User({
       name,
