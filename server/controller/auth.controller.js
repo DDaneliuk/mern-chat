@@ -49,7 +49,12 @@ export const signup = async (req, res) => {
 }
 
 export const logout = (req, res) => {
-  console.log("logoutUser")
+  try{
+    res.cookie('token', '', {maxAge: 0});
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (e){
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 }
 
 export const login = async (req, res) => {
@@ -68,8 +73,8 @@ export const login = async (req, res) => {
       name: user.name,
       profilePicture: user.profilePicture
     });
-    
+
   } catch (e){
-    res.status(500).json({ error: e.message });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
