@@ -52,6 +52,24 @@ export const logout = (req, res) => {
   console.log("logoutUser")
 }
 
-export const login = (req, res) => {
-  console.log("signupUser")
+export const login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    const isPassword = await bcrypt.compare(password, user?.password || ""); 
+
+    if(!user || !isPassword){
+      return res.status(400).json({ error: 'Invalid username or password' });
+    }
+
+    generateTokenAndSetCookie(user._id, res);
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      profilePicture: user.profilePicture
+    });
+    
+  } catch (e){
+    res.status(500).json({ error: e.message });
+  }
 }
