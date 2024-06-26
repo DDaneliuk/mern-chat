@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const conversationSchema = new mongoose.Schema({
-  particioants: [
+  participants: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
