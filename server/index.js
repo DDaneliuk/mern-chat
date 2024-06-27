@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import connectMongo from './db/index.js';
 // routes
 import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.route.js";
 import messageRoutes from "./routes/message.routes.js";
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   connectMongo();
