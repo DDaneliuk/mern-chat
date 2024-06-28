@@ -1,11 +1,13 @@
-import './App.css'
+import Login from './pages/login/Login';
+import Home from './pages/home/Home';
+import "./App.css";
 
 function App() {
-
   return (
-    <>
-     <button className="btn">Button</button>
-    </>
+    <div className='p-4 h-screen flex items-center justify-center'>
+     <Login />
+     <Home />
+    </div>
   )
 }
 
