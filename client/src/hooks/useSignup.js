@@ -2,8 +2,10 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
 
+
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
   const { setAuthUser } = useAuthContext();
  
   const signup = async (inputs) => {
@@ -21,12 +23,15 @@ const useSignup = () => {
 
       const data = await res.json();
       if(data.error){
+        toast.error(data.error);
         throw new Error(data.error);
       }
-
-      localStorage.setItem('user', JSON.stringify(data));
-      setAuthUser(data);
-
+      setIsExploding(true);
+      setTimeout(() => {
+        setIsExploding(false);
+        localStorage.setItem('user', JSON.stringify(data));
+        setAuthUser(data);
+      }, 1000);
     } catch (e) {
       console.log(e.message);
     } finally {
@@ -34,7 +39,7 @@ const useSignup = () => {
     }
   }
 
-  return { loading, signup };
+  return { loading, signup, isExploding };
 }
 
 export default useSignup
