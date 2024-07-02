@@ -1,4 +1,3 @@
-import { stringify } from 'postcss';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../context/AuthContext';
@@ -25,7 +24,6 @@ const useSignup = () => {
         throw new Error(data.error);
       }
 
-      console.log('data', data);
       localStorage.setItem('user', JSON.stringify(data));
       setAuthUser(data);
 
@@ -43,7 +41,6 @@ export default useSignup
 
 function handleInputErrors(inputs){
   const { name, username, password, confirmPassword } = inputs;
-  console.log(!!name, !!username, !!password, !!confirmPassword)
   if(!name || !username || !password || !confirmPassword){
     toast.error('Please fill in all fields');
     return false
