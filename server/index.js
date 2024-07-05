@@ -1,3 +1,4 @@
+import { app, server } from "./socket/socket.js";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -8,7 +9,6 @@ import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.route.js";
 import messageRoutes from "./routes/message.routes.js";
 
-const app = express();
 const PORT = process.env.PORT || 3000;
 
 dotenv.config();
@@ -20,7 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectMongo();
   console.log(`Server started:${PORT}`)
 });
