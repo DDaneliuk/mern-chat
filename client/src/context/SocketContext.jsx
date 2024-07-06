@@ -13,12 +13,18 @@ export const SocketContextProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const {authUser} = useAuthContext();
 
+  let SOCKET_URL = ''
+
+  if(import.meta.env.MODE === 'development'){
+    SOCKET_URL = process.env.SOCKET_DEV
+  } if (import.meta.env.MODE === 'production'){
+    SOCKET_URL = process.env.SOCKET_PROD
+  }
+
   useEffect(() => {
     if(authUser) {
-      const socket = io("http://localhost:3000",{
-        query: {
-          userId: authUser._id,
-        }
+      const socket = io(SOCKET_URL, {
+        query: { userId: authUser._id }
       });
 
       setSocket(socket);
