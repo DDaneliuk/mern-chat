@@ -9,13 +9,16 @@ const SearchInput = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className='flex items-center gap-2'>
-			<input type='text' placeholder='Search…' className='input input-bordered rounded-full'
-				value={search}
-				onChange={(e) => setSearch(e.target.value)} />
-			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
-				<IoSearchSharp className='w-6 h-6 outline-none' />
-			</button>
+		<form onSubmit={handleSubmit} className='flex items-center gap-2 w-[100%]'>
+			<label className="input h-10 p-4 flex items-center gap-2 w-[100%]">
+				<IoSearchSharp className='w-5 h-5 outline-none' />
+  			<input 
+					type="text" 
+					className="grow" 
+					placeholder="Search chats"
+					value={search}
+					onChange={(e) => setSearch(e.target.value)} />
+			</label>
 		</form>
 	);
 };
