@@ -12,7 +12,7 @@ const Sidebar = () => {
 	const profileLetterName = authUser.name.charAt(0).toUpperCase();
 
 	return (
-		<div className={`sm:w-[300px] w-[100%] border-slate-500 flex flex-col ${selectedConversation ? 'hidden' : null}`}>
+		<div className={`sm:w-[300px] w-[100%] border-slate-500 flex p-3 flex-col ${selectedConversation ? 'hidden sm:flex' : null}`}>
 			<div className="flex justify-between items-center mb-4">
 				{profilePic ?
 					<div className='w-10 rounded-full'>
